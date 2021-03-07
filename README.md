@@ -1,6 +1,6 @@
-# Github Repository Template based on Forge 1.16.5 MDK
+# A Java Learning Mod
 
-Minecraft Blank Mod based on Forge 1.16.5
+Minecraft Mod based on Forge 1.16.5
 
  * After cloning, on command line, change to project directory...
  * To generate eclipse launch files and gradle project settings, run:
