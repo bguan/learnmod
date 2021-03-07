@@ -4,12 +4,12 @@ license="Apache License v2"
 
 [[mods]]
 modId="xmod"
-version="${file.jarVersion}"
+version="0.1"
 displayName="X Mod"
 credits="Thanks for this mod goes to Java, Minecraft and Forge"
 authors="X Mod Team"
 description='''
-A blank Mod that can be the foundation of others.
+A Mod as the foundation of learning Java in Minecraft.
 '''
 
 [[dependencies.xmod]]
