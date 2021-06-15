@@ -10,6 +10,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.Commands;
@@ -53,9 +54,9 @@ public class XCommand {
 
 	static int doG(CommandContext<CommandSource> ctx) {
 		int goodiesFound = 0;
-		for (int x = -100; x <= 100; x++) {
-			for (int y = -100; y <=100; y++) {
-				for (int z = -100; z <= 100; z++) {
+		for (int x = -10; x <= 10; x++) {
+			for (int y = -10; y <=10; y++) {
+				for (int z = -10; z <= 10; z++) {
 					if (isGoodie(ctx, x, y, z)) {
 						goodiesFound++;
 					}
@@ -89,7 +90,7 @@ public class XCommand {
 			Blocks.EMERALD_ORE, Blocks.EMERALD_BLOCK,
 			Blocks.LAPIS_ORE, Blocks.LAPIS_BLOCK,
 			Blocks.REDSTONE_ORE, Blocks.REDSTONE_BLOCK,
-			Blocks.OBSIDIAN, 
+			Blocks.STONE_BRICKS,
 			Blocks.CHEST, Blocks.ENDER_CHEST, Blocks.TRAPPED_CHEST,
 		};
 
@@ -98,14 +99,13 @@ public class XCommand {
 			ServerWorld serverworld = source.getWorld();
 			BlockPos origin = source.asPlayer().getPosition();
 			BlockPos bpos = new BlockPos(origin.getX() + x, origin.getY() + y, origin.getZ() + z);
-			TileEntity entity = serverworld.getTileEntity(bpos);
-			if (entity == null) return false;
-			if (entity.getBlockState() == null) return false;
-			if (entity.getBlockState().getBlock() == null) return false;
+			BlockState entity =  serverworld.getBlockState(bpos);
+			if(entity == null) return false;
+			if(entity.getBlock() == null) return false;
 			Block bxyz = entity.getBlockState().getBlock();
-			for (Block gb : goodies) {
-				if (bxyz.equals(gb)) {
-					LOGGER.info("Found "+bxyz+" at "+bpos);
+			for(Block gb : goodies) {
+				if(bxyz.equals(gb)) {
+					LOGGER.info("Found" + bxyz + " at " + bpos);
 					return true;
 				}
 			}
